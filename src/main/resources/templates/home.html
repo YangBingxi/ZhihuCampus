@@ -1,7 +1,34 @@
 <html>
 <body>
+
+Include: #include("header.html") ##include 直接包含文本
+Parse: #parse("header.html") ## parse会做变量解析
+
 <pre>
+    #*
+    这是多行注释，
+    你看不见我～～～～～
+    *#
+    ##这是单行注释，你看不见我
+
+    ## 显示后台变量
     ${value}
+    colors: ${colors}
+    map: ${map}
+
+    #foreach($color i $colors)
+        this is Color $!{foreach.index}:$color,$!{foreach.count}}
+    #end
+
+
+    ##定义函数
+    #macro (render_color,$index,$color)
+        Color Render Macro $index,$color
+    #end
+
+    #foreach($color in $colors)
+        #render_color($foreach,$color)
+    #end
 </pre>
 </body>
 </html>

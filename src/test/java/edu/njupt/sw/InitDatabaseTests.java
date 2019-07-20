@@ -1,5 +1,6 @@
 package edu.njupt.sw;
 
+import edu.njupt.sw.dao.MysqlLink;
 import edu.njupt.sw.dao.QuestionDAO;
 import edu.njupt.sw.dao.UserDAO;
 import edu.njupt.sw.model.Question;
@@ -9,6 +10,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Random;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -47,7 +51,7 @@ public class InitDatabaseTests {
     }
 
     @Test
-    public void QuestionTest(){
+    public void QuestionTest() throws Exception {
 
 //        for(int i=0;i<11;++i){
 //            Question question = new Question();
@@ -62,6 +66,16 @@ public class InitDatabaseTests {
 //            questionDAO.addQuestion(question);
 //        }
 
-        questionDAO.addQue();
+        //questionDAO.addQue();
+
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+
+        MysqlLink.loadDriver();
+        conn=MysqlLink.getConnection();
+        String sql = "insert into question (title, content, user_id, comment_count) values (\"ggg\",\"hhhh\",\"2\",\"5\");";
+        stmt=conn.createStatement();
+        int i = stmt.executeUpdate(sql);
     }
 }

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-@Controller
+/*关闭该入口*/
+//@Controller
 public class IndexController {
 
     @RequestMapping("/")

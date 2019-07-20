@@ -1,8 +1,7 @@
 package edu.njupt.sw.dao;
 
 import edu.njupt.sw.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface UserDAO {
@@ -15,5 +14,14 @@ public interface UserDAO {
     @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
             ") values (#{name},#{password},#{salt},#{headUrl})"})
     int addUser(User user);
+
+    @Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where id=#{id}"})
+    User selectByID(int id);
+
+    @Update({"update ",TABLE_NAME," set password=#{password} where id=#{id}"})
+    void updatePassword(User user);
+
+    @Delete({"delete from ",TABLE_NAME," where id=#{id}"})
+    void deleteByID(int id);
 
 }

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.njupt.sw.dao.QuestionDAO">
     <sql id="table">question</sql>
-    <sql id="selectFields">id, title, content, comment_count,creat_date,user_id
+    <sql id="selectFields">id, title, content, comment_count,created_date,user_id
     </sql>
     <select id="selectLatestQuestions" resultType="edu.njupt.sw.model.Question">
         SELECT
@@ -11,8 +11,8 @@
         FROM
         <include refid="table"/>
 
-        <if test="userID != 0">
-            WHERE user_id = #{userID}
+        <if test="userId != 0">
+            WHERE user_id = #{userId}
         </if>
         ORDER BY id DESC
         LIMIT #{offset},#{limit}

@@ -67,21 +67,22 @@ public class MysqlOperation {
 
 
 
-//    public List<Question> selectLatestQuestions(int userID, int offset, int limit) throws Exception {
-//
-//
-//        Question question = new Question();
-//        Connection conn;
-//        Statement stmt;
-//        ResultSet rs;
-//
-//        MysqlLink.loadDriver();
-//        conn = MysqlLink.getConnection();
-//        String sql = "select from quesion where user_id=userID and between offset and offset+limit";
-//        stmt = conn.createStatement();
-//        int i = stmt.executeUpdate(sql);
-//
-//        return question;
-//
-//    }
+    public List<Question> selectLatestQuestions(int userID, int offset, int limit) throws Exception {
+
+
+        List<Question> questionList = null;
+        Question question = new Question();
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+
+        MysqlLink.loadDriver();
+        conn = MysqlLink.getConnection();
+        String sql = "select from quesion where user_id=userID and between offset and offset+limit";
+        stmt = conn.createStatement();
+        int i = stmt.executeUpdate(sql);
+
+        return questionList;
+
+    }
 }

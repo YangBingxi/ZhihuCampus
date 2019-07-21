@@ -10,19 +10,18 @@ import java.util.List;
 public interface QuestionDAO {
     //注意空格
     String TABLE_NAME = " wenda.question ";
-    String INSERT_FIELDS = "title, content, user_id, comment_count";
-
+    String INSERT_FIELDS = "title, content, created_date, user_id, comment_count ";
+    String SELECT_FIELDS = " id, " + INSERT_FIELDS;
 
 
     @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
-            ") values (#{title},#{content},#{userID},#{commentCount})"})
+            ") values (#{title},#{content},#{createdDate},#{userID},#{commentCount})"})
     int addQuestion(Question question);
 
-    @Insert({"insert into question (title, content, user_id, comment_count) values (\"ggg\",\"hhhh\",\"2\",\"5\")"})
-    int addQue();
 
-    List<Question> selectLatestQuestions(@Param("userID")int userID,
-                                       @Param("offset")int offset,
-                                       @Param("limit")int limit);
+
+    List<Question> selectLatestQuestions(@Param("userId") int userId, @Param("offset") int offset,
+                                         @Param("limit") int limit);
+
 
 }

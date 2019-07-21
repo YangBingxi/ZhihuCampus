@@ -3,11 +3,11 @@ package edu.njupt.sw.model;
 import java.util.Date;
 
 public class Question {
-    private int  id;
-    private  String title;
+    private int id;
+    private String title;
     private String content;
     private Date createdDate;
-    private int userID;
+    private int userId;
     private int commentCount;
 
     public int getId() {
@@ -42,12 +42,12 @@ public class Question {
         this.createdDate = createdDate;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCommentCount() {
@@ -57,6 +57,4 @@ public class Question {
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
-
-
 }

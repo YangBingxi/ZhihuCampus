@@ -6,8 +6,10 @@ import edu.njupt.sw.dao.QuestionDAO;
 import edu.njupt.sw.dao.UserDAO;
 import edu.njupt.sw.model.Question;
 import edu.njupt.sw.model.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,13 +26,13 @@ import java.util.TimeZone;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ToutiaoApplication.class)
-//@Sql("/init-schema.sql")
+@Sql("/init-schema.sql")
 public class InitDatabaseTests {
 
-  //  @Autowired
+    @Autowired
     UserDAO userDAO;
 
-   // @Autowired
+    @Autowired
     QuestionDAO questionDAO;
 
     @Test
@@ -44,16 +46,27 @@ public class InitDatabaseTests {
             user.setName(String.format("USER%d", i));
             user.setPassword("");
             user.setSalt("");
-           // userDAO.addUser(user);//不可以重复插入相同用户
 
+            userDAO.addUser(user);//不可以重复插入相同用户
 
             user.setPassword("xx5252");
             userDAO.updatePassword(user);
+
+
+            Question question = new Question();
+            question.setCommentCount(i);
+            Date date = new Date();
+            date.setTime(date.getTime() + 1000 * 3600 * 5 * i);
+            question.setCreatedDate(date);
+            question.setUserId(i + 1);
+            question.setTitle(String.format("TITLE{%d}", i));
+            question.setContent(String.format("我们都是好孩子 %d", i));
+            questionDAO.addQuestion(question);
         }
 
-//        Assert.assertEquals("xx", userDAO.selectByID(1).getPassword());
-//        userDAO.deleteByID(1);
-//        Assert.assertNull(userDAO.selectByID(1));
+        //Assert.assertEquals("xx", userDAO.selectByID(1).getPassword());
+        userDAO.deleteById(1);
+        //Assert.assertNull(userDAO.selectByID(1));
     }
 
     @Test
@@ -102,7 +115,7 @@ public class InitDatabaseTests {
             Question question = new Question();
             question.setTitle(String.format("TITLE%d",i));
             question.setContent("我们都是好孩子");
-            question.setUserID(i+1);
+            question.setUserId(i+1);
             Date date = new Date();
             Timestamp timestamp = new Timestamp(date.getTime());
             timestamp.setTime(timestamp.getTime()+1000*3600*5*i);
@@ -110,7 +123,7 @@ public class InitDatabaseTests {
             question.setCommentCount(i);
 
             System.out.println(timestamp);
-            mysqlOperation.insertQuestion(question.getTitle(),question.getContent(),question.getUserID(),question.getCreatedDate(),question.getCommentCount());
+            mysqlOperation.insertQuestion(question.getTitle(),question.getContent(),question.getUserId(),question.getCreatedDate(),question.getCommentCount());
         }
 
     }

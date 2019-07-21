@@ -5,13 +5,25 @@ public class User {
     private int id;
     private String name;
     private String password;
+    private String salt;
+    private String headUrl;
 
-    public int getId() {
-        return id;
+    public User() {
+
+    }
+    public User(String name) {
+        this.name = name;
+        this.password = "";
+        this.salt = "";
+        this.headUrl = "";
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -38,30 +50,11 @@ public class User {
         this.headUrl = headUrl;
     }
 
-    private String salt;
-    private String headUrl;
-
-    public User() {
-
+    public int getId() {
+        return id;
     }
 
-    public User(String name) {
-        this.name = name;
-        this.password = "";
-        this.salt = "";
-        this.headUrl = "";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public String getDescription() {
-        return "This is " + name;
+    public void setId(int id) {
+        this.id = id;
     }
 }

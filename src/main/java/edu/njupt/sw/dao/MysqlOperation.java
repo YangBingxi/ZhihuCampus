@@ -13,58 +13,54 @@ import java.util.List;
 public class MysqlOperation {
 
     /**
-     * @see 插入用户信息
      * @param name
      * @param password
      * @param salt
      * @param headUrl
      * @throws Exception
+     * @see 插入用户信息
      */
     public void insertUser(String name, String password, String salt, String headUrl) throws Exception {
         Connection conn;
-        Statement stmt ;
+        Statement stmt;
 
         MysqlLink.loadDriver();
         conn = MysqlLink.getConnection();
         stmt = conn.createStatement();
         String sql = "insert into wenda.user (user_name, password, salt, head_url) values (\"" + name + "\",\"" + password + "\",\"" + salt + "\",\"" + headUrl + "\")";
         int i = stmt.executeUpdate(sql);
-        if(i>0){
+        if (i > 0) {
             System.out.println("插入成功");
-        }
-        else {
+        } else {
             System.out.println("插入失败");
         }
-        MysqlLink.release(stmt,conn);
+        MysqlLink.release(stmt, conn);
     }
 
     /**
-     * @see 插入问题信息
      * @param name
      * @param password
      * @param salt
      * @param headUrl
      * @throws Exception
+     * @see 插入问题信息
      */
-    public void insertQuestion(String title, String content, int user_id, Date created_date,int comment_count) throws Exception {
+    public void insertQuestion(String title, String content, int user_id, Date created_date, int comment_count) throws Exception {
         Connection conn;
-        Statement stmt ;
+        Statement stmt;
 
         MysqlLink.loadDriver();
         conn = MysqlLink.getConnection();
         stmt = conn.createStatement();
         String sql = "insert into wenda.question (title, content, user_id, created_date, comment_count) values (\"" + title + "\",\"" + content + "\",\"" + user_id + "\",\"" + created_date + "\",\"" + comment_count + "\")";
         int i = stmt.executeUpdate(sql);
-        if(i>0){
+        if (i > 0) {
             System.out.println("插入成功");
-        }
-        else {
+        } else {
             System.out.println("插入失败");
         }
-        MysqlLink.release(stmt,conn);
+        MysqlLink.release(stmt, conn);
     }
-
-
 
 
     public List<Question> selectLatestQuestions(int userID, int offset, int limit) throws Exception {

@@ -22,6 +22,12 @@ public class UserService {
     @Autowired
     private LoginTicketDAO loginTicketDAO;
 
+    /**
+     * @see 注册函数
+     * @param username
+     * @param password
+     * @return
+     */
     public Map<String, Object> register(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(username)) {
@@ -56,7 +62,12 @@ public class UserService {
         return map;
     }
 
-
+    /**
+     * @see 登录函数
+     * @param username
+     * @param password
+     * @return
+     */
     public Map<String, Object> login(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(username)) {
@@ -90,18 +101,28 @@ public class UserService {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(userId);
         Date date = new Date();
-        date.setTime(date.getTime() + 1000 * 3600 * 24);
+        date.setTime(date.getTime() + 1000 * 3600 * 24); //设置过期时间
         ticket.setExpired(date);
         ticket.setStatus(0);
-        ticket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));
-        loginTicketDAO.addTicket(ticket);
+        ticket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));//生成ticket，把中间的“-”替换掉
+        loginTicketDAO.addTicket(ticket);   //把ticket写入数据库
+
         return ticket.getTicket();
     }
 
+    /**
+     * @see 获取用户
+     * @param id
+     * @return
+     */
     public User getUser(int id) {
         return userDAO.selectById(id);
     }
 
+    /**
+     * @see 登出
+     * @param ticket
+     */
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }

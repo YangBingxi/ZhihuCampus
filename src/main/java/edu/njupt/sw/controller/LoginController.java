@@ -24,7 +24,7 @@ public class LoginController {
     public String reg(Model model, @RequestParam("username") String username,
                       @RequestParam("password") String password,
                       @RequestParam("next") String next,
-                      @RequestParam(value="rememberme", defaultValue = "false") boolean rememberme,
+                      @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
                       HttpServletResponse response) {
         try {
             Map<String, Object> map = userService.register(username, password);
@@ -32,7 +32,7 @@ public class LoginController {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
                 if (rememberme) {
-                    cookie.setMaxAge(3600*24*5);
+                    cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
                 if (StringUtils.isNotBlank(next)) {
@@ -57,11 +57,21 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * @see 登录
+     * @param model
+     * @param username
+     * @param password
+     * @param next
+     * @param rememberme
+     * @param response
+     * @return
+     */
     @RequestMapping(path = {"/login/"}, method = {RequestMethod.POST})
     public String login(Model model, @RequestParam("username") String username,
                         @RequestParam("password") String password,
-                        @RequestParam(value="next", required = false) String next,
-                        @RequestParam(value="rememberme", defaultValue = "false") boolean rememberme,
+                        @RequestParam(value = "next", required = false) String next,
+                        @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
                         HttpServletResponse response) {
         try {
             Map<String, Object> map = userService.login(username, password);
@@ -69,7 +79,7 @@ public class LoginController {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
                 if (rememberme) {
-                    cookie.setMaxAge(3600*24*5);
+                    cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
                 if (StringUtils.isNotBlank(next)) {
@@ -87,6 +97,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * @see 退出
+     * @param ticket
+     * @return
+     */
     @RequestMapping(path = {"/logout"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);

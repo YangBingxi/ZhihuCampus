@@ -19,7 +19,6 @@ public interface QuestionDAO {
     int addQuestion(Question question);
 
 
-
     List<Question> selectLatestQuestions(@Param("userId") int userId, @Param("offset") int offset,
                                          @Param("limit") int limit);
 

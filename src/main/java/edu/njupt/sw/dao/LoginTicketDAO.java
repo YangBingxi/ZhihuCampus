@@ -16,6 +16,7 @@ public interface LoginTicketDAO {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where ticket=#{ticket}"})
     LoginTicket selectByTicket(String ticket);
 
+    //用户登出时，把ticket置否
     @Update({"update ", TABLE_NAME, " set status=#{status} where ticket=#{ticket}"})
     void updateStatus(@Param("ticket") String ticket, @Param("status") int status);
 }

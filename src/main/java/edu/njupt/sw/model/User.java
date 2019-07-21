@@ -11,6 +11,7 @@ public class User {
     public User() {
 
     }
+
     public User(String name) {
         this.name = name;
         this.password = "";

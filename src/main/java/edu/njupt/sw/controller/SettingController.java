@@ -15,7 +15,7 @@ public class SettingController {
 
     @RequestMapping(path = {"/setting"})
     @ResponseBody
-    public String setting(HttpSession httpSession){
+    public String setting(HttpSession httpSession) {
         return "Setting OK." + ToutiaoService.getMessage(1);
     }
 }

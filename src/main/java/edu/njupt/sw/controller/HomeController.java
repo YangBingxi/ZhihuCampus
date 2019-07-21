@@ -42,10 +42,10 @@ public class HomeController {
     }
 
     /**
-     * @see 首页显示最近的十个问题
      * @param model
      * @param pop
      * @return
+     * @see 首页显示最近的十个问题
      */
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model,
@@ -55,10 +55,10 @@ public class HomeController {
     }
 
     /**
-     * @see 增加筛选条件      /user/id  之后可以筛选该用户的问题
      * @param model
      * @param userID
      * @return
+     * @see 增加筛选条件      /user/id  之后可以筛选该用户的问题
      */
     @RequestMapping(path = {"/user/{userID}"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String userIndex(Model model, @PathVariable("userID") int userID) {

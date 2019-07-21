@@ -46,7 +46,7 @@ public class IndexController {
     public String pro(Model model) {
         model.addAttribute("value", "value");
 
-        List<String> colors = Arrays.asList(new String[]{"RED", "GREEN", "YELLOW"});
+        List<String> colors = Arrays.asList("RED", "GREEN", "YELLOW");
         model.addAttribute("colors", colors);
 
         Map<String, String> map = new HashMap<>();
@@ -120,7 +120,7 @@ public class IndexController {
         if ("admin".equals(key)) {
             return "hello admin";
         }
-        throw  new IllegalArgumentException("参数不对");
+        throw new IllegalArgumentException("参数不对");
     }
 
     @ExceptionHandler()
@@ -130,7 +130,7 @@ public class IndexController {
     }
 
     @RequestMapping(path = {"/demo"})
-    public String demo(){
+    public String demo() {
         String s = "detail";
         return s;
     }

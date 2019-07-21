@@ -9,13 +9,11 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class MysqlLink {
-    public MysqlLink(){
-
-    }
     private static final String Driver;
     private static final String url;
     private static final String username;
     private static final String password;
+
     static {
         // 加载属性文件并解析：
         Properties props = new Properties();
@@ -32,6 +30,10 @@ public class MysqlLink {
         url = props.getProperty("url");
         username = props.getProperty("username");
         password = props.getProperty("password");
+    }
+
+    public MysqlLink() {
+
     }
 
     /**
@@ -87,7 +89,7 @@ public class MysqlLink {
             }
             rs = null;
         }
-        release(stmt,conn);
+        release(stmt, conn);
 
     }
 

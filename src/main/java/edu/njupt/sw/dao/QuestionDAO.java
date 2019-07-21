@@ -21,7 +21,7 @@ public interface QuestionDAO {
     @Insert({"insert into question (title, content, user_id, comment_count) values (\"ggg\",\"hhhh\",\"2\",\"5\")"})
     int addQue();
 
-    List<Question> selectLastQuestions(@Param("userID")int userID,
+    List<Question> selectLatestQuestions(@Param("userID")int userID,
                                        @Param("offset")int offset,
                                        @Param("limit")int limit);
 

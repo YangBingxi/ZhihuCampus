@@ -31,14 +31,14 @@ public class IndexController {
      * @autho sw
      * @see 路径参数和访问参数
      */
-    @RequestMapping("/profile/{groupID}/{userID}")
+    @RequestMapping("/profile/{groupID}/{userId}")
     @ResponseBody
-    public String profile(@PathVariable("userID") int userID,
+    public String profile(@PathVariable("userId") int userId,
                           @PathVariable("groupID") String groupID,
                           @RequestParam(value = "type", defaultValue = "1") int type,
                           @RequestParam(value = "key", required = false) String key) {
 
-        return String.format("profile Page of %s / %d ,type:%d key:%s", groupID, userID, type, key);
+        return String.format("profile Page of %s / %d ,type:%d key:%s", groupID, userId, type, key);
     }
 
 

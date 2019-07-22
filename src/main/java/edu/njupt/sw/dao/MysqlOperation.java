@@ -63,7 +63,7 @@ public class MysqlOperation {
     }
 
 
-    public List<Question> selectLatestQuestions(int userID, int offset, int limit) throws Exception {
+    public List<Question> selectLatestQuestions(int userId, int offset, int limit) throws Exception {
 
 
         List<Question> questionList = null;
@@ -74,7 +74,7 @@ public class MysqlOperation {
 
         MysqlLink.loadDriver();
         conn = MysqlLink.getConnection();
-        String sql = "select from quesion where user_id=userID and between offset and offset+limit";
+        String sql = "select from quesion where user_id=userId and between offset and offset+limit";
         stmt = conn.createStatement();
         int i = stmt.executeUpdate(sql);
 

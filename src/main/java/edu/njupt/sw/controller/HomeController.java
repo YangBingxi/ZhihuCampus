@@ -29,8 +29,8 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    private List<ViewObject> getQuestions(int userID, int offset, int limit) {
-        List<Question> questionList = questionService.getLatestQuestions(userID, offset, limit);
+    private List<ViewObject> getQuestions(int userId, int offset, int limit) {
+        List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
         List<ViewObject> vos = new ArrayList<>();
         for (Question question : questionList) {
             ViewObject vo = new ViewObject();
@@ -56,13 +56,13 @@ public class HomeController {
 
     /**
      * @param model
-     * @param userID
+     * @param userId
      * @return
      * @see 增加筛选条件      /user/id  之后可以筛选该用户的问题
      */
-    @RequestMapping(path = {"/user/{userID}"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String userIndex(Model model, @PathVariable("userID") int userID) {
-        model.addAttribute("vos", getQuestions(userID, 0, 10));
+    @RequestMapping(path = {"/user/{userId}"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String userIndex(Model model, @PathVariable("userId") int userId) {
+        model.addAttribute("vos", getQuestions(userId, 0, 10));
         return "index";
     }
 }

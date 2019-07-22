@@ -15,7 +15,7 @@ public interface QuestionDAO {
 
 
     @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
-            ") values (#{title},#{content},#{createdDate},#{userID},#{commentCount})"})
+            ") values (#{title},#{content},#{createdDate},#{userId},#{commentCount})"})
     int addQuestion(Question question);
 
 

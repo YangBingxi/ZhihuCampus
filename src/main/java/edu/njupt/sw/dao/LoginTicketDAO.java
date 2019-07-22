@@ -2,7 +2,12 @@ package edu.njupt.sw.dao;
 
 import edu.njupt.sw.model.LoginTicket;
 import org.apache.ibatis.annotations.*;
-
+/*
+用T票对用户进行唯一标识
+ */
+/*
+操作T票的数据库接口
+ */
 @Mapper
 public interface LoginTicketDAO {
     String TABLE_NAME = "login_ticket";

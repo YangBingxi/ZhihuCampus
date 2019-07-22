@@ -15,14 +15,17 @@ import java.util.Date;
 public class LogAspect {
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Before("execution(* com.nowcoder.controller.*Controller.*(..))")
-    public void beforeMethod(JoinPoint joinPoint) {
-        StringBuilder sb = new StringBuilder();
-        for (Object arg : joinPoint.getArgs()) {
-            sb.append("arg:" + arg.toString() + "|");
-        }
-        logger.info("before method:" + sb.toString());
-    }
+/*
+加上这个函数的时候登录页面加载不出，报错说是空指针，尚未排查出
+ */
+//    @Before("execution(* edu.njupt.sw.controller.*Controller.*(..))")
+//    public void beforeMethod(JoinPoint joinPoint) {
+//        StringBuilder sb = new StringBuilder();
+//        for (Object arg : joinPoint.getArgs()) {
+//            sb.append("arg:" + arg.toString() + "|");
+//        }
+//        logger.info("before method:" + sb.toString());
+//    }
 
     @After("execution(* edu.njupt.sw.controller.IndexController.*(..))")
     public void afterMethod() {

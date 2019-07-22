@@ -1,11 +1,13 @@
 package edu.njupt.sw.dao;
 
 import edu.njupt.sw.model.Question;
-import edu.njupt.sw.model.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/*
+操作问题的数据库接口
+ */
 @Mapper
 public interface QuestionDAO {
     String TABLE_NAME = " question ";

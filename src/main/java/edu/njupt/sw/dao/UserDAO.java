@@ -3,6 +3,9 @@ package edu.njupt.sw.dao;
 import edu.njupt.sw.model.User;
 import org.apache.ibatis.annotations.*;
 
+/*
+操作用户的数据库接口
+ */
 @Mapper
 public interface UserDAO {
     // 注意空格

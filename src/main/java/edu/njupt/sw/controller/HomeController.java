@@ -29,6 +29,13 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+    /**
+     * 定义获取OV的函数
+     * @param userId
+     * @param offset
+     * @param limit
+     * @return
+     */
     private List<ViewObject> getQuestions(int userId, int offset, int limit) {
         List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
         List<ViewObject> vos = new ArrayList<>();

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+
 @Controller
 public class QuestionController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -31,6 +33,13 @@ public class QuestionController {
     @Autowired
     UserService userService;
 
+    /**
+     * 获取某个问题的详情页面
+     *
+     * @param model
+     * @param qid
+     * @return
+     */
     @RequestMapping(value = "/question/{qid}", method = {RequestMethod.GET})
     public String questionDetail(Model model, @PathVariable("qid") int qid) {
         Question question = questionService.getById(qid);
@@ -48,6 +57,14 @@ public class QuestionController {
         return "detail";
     }
 
+
+    /**
+     * 添加问题页面
+     *
+     * @param title
+     * @param content
+     * @return
+     */
     @RequestMapping(value = "/question/add", method = {RequestMethod.POST})
     @ResponseBody
     public String addQuestion(@RequestParam("title") String title, @RequestParam("content") String content) {
@@ -56,13 +73,13 @@ public class QuestionController {
             question.setContent(content);
             question.setCreatedDate(new Date());
             question.setTitle(title);
-            if (hostHolder.getUser() == null) {
-                question.setUserId(WendaUtil.ANONYMOUS_USERID);
+            if (hostHolder.getUser() == null) { //当前用户未登录
+                question.setUserId(WendaUtil.ANONYMOUS_USERID);//以匿名用户的身份发布问题
                 // return WendaUtil.getJSONString(999);
             } else {
                 question.setUserId(hostHolder.getUser().getId());
             }
-            if (questionService.addQuestion(question) > 0) {
+            if (questionService.addQuestion(question) > 0) {    //问题添加成功
                 return WendaUtil.getJSONString(0);
             }
         } catch (Exception e) {

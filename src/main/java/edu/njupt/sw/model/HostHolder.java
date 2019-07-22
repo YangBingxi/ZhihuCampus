@@ -3,6 +3,7 @@ package edu.njupt.sw.model;
 import org.springframework.stereotype.Component;
 
 
+
 @Component
 public class HostHolder {
     private static ThreadLocal<User> users = new ThreadLocal<User>(); //变量副本，线程本地变量

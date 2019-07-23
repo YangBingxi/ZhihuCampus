@@ -46,9 +46,9 @@ public class CommentController {
             content = sensitiveService.filter(content);
             // 过滤content
             Comment comment = new Comment();
-            if (hostHolder.getUser() != null) {
+            if (hostHolder.getUser() != null) { //已登录
                 comment.setUserId(hostHolder.getUser().getId());
-            } else {
+            } else {    //未登录
                 comment.setUserId(WendaUtil.ANONYMOUS_USERID);
             }
             comment.setContent(content);

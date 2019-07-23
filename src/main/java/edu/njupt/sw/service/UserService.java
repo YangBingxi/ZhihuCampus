@@ -22,6 +22,10 @@ public class UserService {
     @Autowired
     private LoginTicketDAO loginTicketDAO;
 
+    public User selectByName(String name) {
+        return userDAO.selectByName(name);
+    }
+
     /**
      * @see 注册函数
      * @param username
@@ -109,6 +113,7 @@ public class UserService {
 
         return ticket.getTicket();
     }
+
 
     /**
      * @see 获取用户

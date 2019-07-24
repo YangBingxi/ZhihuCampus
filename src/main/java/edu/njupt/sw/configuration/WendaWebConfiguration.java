@@ -1,6 +1,6 @@
 package edu.njupt.sw.configuration;
 
-import edu.njupt.sw.interceptor.LoginRequredInterceptor;
+import edu.njupt.sw.interceptor.LoginRequiredInterceptor;
 import edu.njupt.sw.interceptor.PassportInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class WendaWebConfiguration extends WebMvcConfigurerAdapter {
 //    LoginRequiredInterceptor loginRequiredInterceptor;
 
     @Autowired
-    LoginRequredInterceptor loginRequredInterceptor;
+    LoginRequiredInterceptor loginRequredInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) { //注册自己的拦截器

@@ -1,5 +1,8 @@
 package edu.njupt.sw.controller;
 
+import edu.njupt.sw.async.EventModel;
+import edu.njupt.sw.async.EventProducer;
+import edu.njupt.sw.async.EventType;
 import edu.njupt.sw.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -19,6 +22,10 @@ public class LoginController {
 
     @Autowired
     UserService userService;
+
+
+    @Autowired
+    EventProducer eventProducer;
 
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.POST})
     public String reg(Model model, @RequestParam("username") String username,
@@ -82,6 +89,15 @@ public class LoginController {
                     cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
+
+                /*
+                未设置邮件服务器
+                屏蔽邮件功能
+                 */
+//                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
+//                        .setExt("username", username).setExt("email", "798640762@qq.com")
+//                        .setActorId((int)map.get("userId")));
+
                 if (StringUtils.isNotBlank(next)) {
                     return "redirect:" + next;
                 }

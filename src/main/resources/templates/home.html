@@ -1,34 +1,57 @@
 <html>
 <body>
-
-Include: #include("header.html") ##include 直接包含文本
-Parse: #parse("header.html") ## parse会做变量解析
-
 <pre>
     #*
-    这是多行注释，
-    你看不见我～～～～～
+    你看不到我~~~~
     *#
-    ##这是单行注释，你看不见我
+    $!{value1}
+    $!{value2} ## 如果不存在，强制为空
+    ${value3}
 
-    ## 显示后台变量
-    ${value}
-    colors: ${colors}
-    map: ${map}
+    colors: $!{colors}
 
-    #foreach($color i $colors)
-        this is Color $!{foreach.index}:$color,$!{foreach.count}}
+    #foreach($color in $colors)
+        This is Color $!{foreach.index}: $color, $!{foreach.count}
     #end
 
+    #foreach($key in $map.keySet())
+        Number: $key, Value: $map.get($key)
+    #end
 
-    ##定义函数
-    #macro (render_color,$index,$color)
-        Color Render Macro $index,$color
+    #foreach($kv in $map.entrySet())
+        Number: $kv.key, Value: $kv.value
+    #end
+
+    User:  $!{user.name}
+    $!{user.description}
+    $!{user.getDescription()}
+
+    #set($title = "nowcoder_title")
+    Title: $!{title}
+
+
+    Parse: #parse("header.html")
+    Include: #include("header.html")
+
+    #macro (render_color, $index, $color)
+        Color Render Macro $index, $color
     #end
 
     #foreach($color in $colors)
-        #render_color($foreach,$color)
+        #render_color($foreach.index, $color)
     #end
+
+    #set($hello = "hello")
+    #set($helloworld1 = "$!{hello} world")
+    $!hello
+    $helloworld1
+    #set($helloworld2 = '$!{hello} world')
+    $helloworld2
+
+
+
+
+
 </pre>
 </body>
 </html>

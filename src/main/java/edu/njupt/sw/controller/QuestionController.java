@@ -2,6 +2,7 @@ package edu.njupt.sw.controller;
 
 import edu.njupt.sw.model.*;
 import edu.njupt.sw.service.CommentService;
+import edu.njupt.sw.service.LikeService;
 import edu.njupt.sw.service.QuestionService;
 import edu.njupt.sw.service.UserService;
 import edu.njupt.sw.util.WendaUtil;
@@ -33,6 +34,9 @@ public class QuestionController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    LikeService likeService;
+
     /**
      * 获取某个问题的详情页面
      *
@@ -44,16 +48,24 @@ public class QuestionController {
     public String questionDetail(Model model, @PathVariable("qid") int qid) {
         Question question = questionService.getById(qid);
         model.addAttribute("question", question);
+
         List<Comment> commentList = commentService.getCommentsByEntity(qid, EntityType.ENTITY_QUESTION);
-        List<ViewObject> vos = new ArrayList<>();
+        List<ViewObject> comments = new ArrayList<ViewObject>();
         for (Comment comment : commentList) {
             ViewObject vo = new ViewObject();
             vo.set("comment", comment);
-            vo.set("user", userService.getUser(comment.getUserId()));
-            vos.add(vo);
-        }
-        model.addAttribute("comments", vos);
+            if (hostHolder.getUser() == null) {
+                vo.set("liked", 0);
+            } else {
+                vo.set("liked", likeService.getLikeStatus(hostHolder.getUser().getId(), EntityType.ENTITY_COMMENT, comment.getId()));
+            }
 
+            vo.set("likeCount", likeService.getLikeCount(EntityType.ENTITY_COMMENT, comment.getId()));
+            vo.set("user", userService.getUser(comment.getUserId()));
+            comments.add(vo);
+        }
+
+        model.addAttribute("comments", comments);
         return "detail";
     }
 

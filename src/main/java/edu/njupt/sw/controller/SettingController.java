@@ -1,6 +1,6 @@
 package edu.njupt.sw.controller;
 
-import edu.njupt.sw.service.ToutiaoService;
+import edu.njupt.sw.service.CampusZhiHuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,11 +11,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class SettingController {
     @Autowired
-    ToutiaoService toutiaoService;
+    CampusZhiHuService toutiaoService;
 
     @RequestMapping(path = {"/setting"})
     @ResponseBody
     public String setting(HttpSession httpSession) {
-        return "Setting OK." + ToutiaoService.getMessage(1);
+        return "Setting OK." + CampusZhiHuService.getMessage(1);
     }
 }

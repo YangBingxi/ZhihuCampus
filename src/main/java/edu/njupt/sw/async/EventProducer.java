@@ -7,9 +7,10 @@ import edu.njupt.sw.util.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
+/*
+事件的入口
+ */
 @Service
 public class EventProducer {
     @Autowired

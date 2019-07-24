@@ -6,7 +6,6 @@ import edu.njupt.sw.dao.QuestionDAO;
 import edu.njupt.sw.dao.UserDAO;
 import edu.njupt.sw.model.Question;
 import edu.njupt.sw.model.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ToutiaoApplication.class)
+@SpringApplicationConfiguration(classes = CampusZhiHuApplication.class)
 @Sql("/init-schema.sql")
 public class InitDatabaseTests {
 

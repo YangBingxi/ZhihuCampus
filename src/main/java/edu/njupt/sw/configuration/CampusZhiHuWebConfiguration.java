@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 
 @Component
-public class WendaWebConfiguration extends WebMvcConfigurerAdapter {
+public class CampusZhiHuWebConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     PassportInterceptor passportInterceptor;
 

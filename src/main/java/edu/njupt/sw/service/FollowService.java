@@ -17,7 +17,7 @@ import java.util.Set;
 @Service
 public class FollowService {
     @Autowired
-    JedisAdapter jedisAdapter;
+    JedisAdapter jedisAdapter;  //引入Redis
 
     /**
      * 用户关注了某个实体,可以关注问题,关注用户,关注评论等任何实体

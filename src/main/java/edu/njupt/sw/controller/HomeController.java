@@ -1,8 +1,9 @@
 package edu.njupt.sw.controller;
 
 
-import edu.njupt.sw.model.Question;
-import edu.njupt.sw.model.ViewObject;
+import edu.njupt.sw.model.*;
+import edu.njupt.sw.service.CommentService;
+import edu.njupt.sw.service.FollowService;
 import edu.njupt.sw.service.QuestionService;
 import edu.njupt.sw.service.UserService;
 import org.slf4j.Logger;
@@ -29,8 +30,18 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    FollowService followService;
+
+    @Autowired
+    CommentService commentService;
+
+    @Autowired
+    HostHolder hostHolder;
+
     /**
      * 定义获取OV的函数
+     *
      * @param userId
      * @param offset
      * @param limit
@@ -42,6 +53,7 @@ public class HomeController {
         for (Question question : questionList) {
             ViewObject vo = new ViewObject();
             vo.set("question", question);
+            vo.set("followCount", followService.getFollowerCount(EntityType.ENTITY_QUESTION, question.getId()));
             vo.set("user", userService.getUser(question.getUserId()));
             vos.add(vo);
         }
@@ -55,8 +67,7 @@ public class HomeController {
      * @see 首页显示最近的十个问题
      */
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String index(Model model,
-                        @RequestParam(value = "pop", defaultValue = "0") int pop) {
+    public String index(Model model, @RequestParam(value = "pop", defaultValue = "0") int pop) {
         model.addAttribute("vos", getQuestions(0, 0, 10));
         return "index";
     }
@@ -70,6 +81,19 @@ public class HomeController {
     @RequestMapping(path = {"/user/{userId}"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String userIndex(Model model, @PathVariable("userId") int userId) {
         model.addAttribute("vos", getQuestions(userId, 0, 10));
-        return "index";
+
+        User user = userService.getUser(userId);
+        ViewObject vo = new ViewObject();
+        vo.set("user", user);
+        vo.set("commentCount", commentService.getUserCommentCount(userId));
+        vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, userId));
+        vo.set("followeeCount", followService.getFolloweeCount(userId, EntityType.ENTITY_USER));
+        if (hostHolder.getUser() != null) {
+            vo.set("followed", followService.isFollower(hostHolder.getUser().getId(), EntityType.ENTITY_USER, userId));
+        } else {
+            vo.set("followed", false);
+        }
+        model.addAttribute("profileUser", vo);
+        return "profile";
     }
 }

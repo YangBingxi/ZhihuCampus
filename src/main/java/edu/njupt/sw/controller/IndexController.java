@@ -1,6 +1,11 @@
 package edu.njupt.sw.controller;
 
 import com.sun.deploy.net.HttpResponse;
+import edu.njupt.sw.service.CampusZhiHuService;
+import edu.njupt.sw.util.WendaUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -17,11 +22,15 @@ import java.util.*;
 /*关闭该入口*/
 //@Controller
 public class IndexController {
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+    @Autowired
+    CampusZhiHuService campusZhiHuService;
 
-    @RequestMapping("/")
+    @RequestMapping(path = {"/","/index"},method = {RequestMethod.GET})
     @ResponseBody
     public String index(HttpSession httpSession) {
-        return "Hello " + httpSession.getAttribute("msg");  //接收跳转消息
+        logger.info("VISIT HOME");
+        return campusZhiHuService.getMessage(2) + "Hello CampusZhiHu" + httpSession.getAttribute("msg");
     }
 
 

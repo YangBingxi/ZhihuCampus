@@ -325,6 +325,7 @@ public class JedisAdapter implements InitializingBean {
         } catch (Exception e) {
             logger.error("发生异常" + e.getMessage());
         } finally {
+
         }
         return null;
     }

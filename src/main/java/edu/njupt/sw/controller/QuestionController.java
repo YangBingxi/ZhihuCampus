@@ -1,10 +1,8 @@
 package edu.njupt.sw.controller;
 
+import edu.njupt.sw.async.EventProducer;
 import edu.njupt.sw.model.*;
-import edu.njupt.sw.service.CommentService;
-import edu.njupt.sw.service.LikeService;
-import edu.njupt.sw.service.QuestionService;
-import edu.njupt.sw.service.UserService;
+import edu.njupt.sw.service.*;
 import edu.njupt.sw.util.WendaUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,16 +24,22 @@ public class QuestionController {
     QuestionService questionService;
 
     @Autowired
-    CommentService commentService;
-
-    @Autowired
     HostHolder hostHolder;
 
     @Autowired
     UserService userService;
 
     @Autowired
+    CommentService commentService;
+
+    @Autowired
+    FollowService followService;
+
+    @Autowired
     LikeService likeService;
+
+    @Autowired
+    EventProducer eventProducer;
 
     /**
      * 获取某个问题的详情页面
@@ -66,6 +70,28 @@ public class QuestionController {
         }
 
         model.addAttribute("comments", comments);
+
+        List<ViewObject> followUsers = new ArrayList<ViewObject>();
+        // 获取关注的用户信息
+        List<Integer> users = followService.getFollowers(EntityType.ENTITY_QUESTION, qid, 20);
+        for (Integer userId : users) {
+            ViewObject vo = new ViewObject();
+            User u = userService.getUser(userId);
+            if (u == null) {
+                continue;
+            }
+            vo.set("name", u.getName());
+            vo.set("headUrl", u.getHeadUrl());
+            vo.set("id", u.getId());
+            followUsers.add(vo);
+        }
+        model.addAttribute("followUsers", followUsers);
+        if (hostHolder.getUser() != null) {
+            model.addAttribute("followed", followService.isFollower(hostHolder.getUser().getId(), EntityType.ENTITY_QUESTION, qid));
+        } else {
+            model.addAttribute("followed", false);
+        }
+
         return "detail";
     }
 

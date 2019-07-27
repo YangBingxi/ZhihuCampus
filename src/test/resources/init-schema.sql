@@ -76,8 +76,8 @@ CREATE TABLE `feed`
     `id`           INT      NOT NULL AUTO_INCREMENT,
     `created_date` DATETIME NULL,
     `user_id`      INT      NULL,
-    `data`         TINYTEXT NULL,
-    `type`         INT      NULL,
+    `data_feed`         TINYTEXT NULL,
+    `type_feed`         INT      NULL,
     PRIMARY KEY (`id`),
     INDEX `user_index` (`user_id` ASC)
 )

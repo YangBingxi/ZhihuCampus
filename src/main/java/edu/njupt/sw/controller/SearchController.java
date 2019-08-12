@@ -20,21 +20,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+@Controller //入口
 public class SearchController {
     private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
-    @Autowired
+    @Autowired  //自动装配
     SearchService searchService;
 
-    @Autowired
+    @Autowired  //自动装配
     FollowService followService;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired  //自动装配
     QuestionService questionService;
 
+    /**
+     * 搜索
+     * @param model
+     * @param keyword
+     * @param offset
+     * @param count
+     * @return
+     */
     @RequestMapping(path = {"/search"}, method = {RequestMethod.GET})
     public String search(Model model, @RequestParam("q") String keyword,
                          @RequestParam(value = "offset", defaultValue = "0") int offset,

@@ -8,7 +8,7 @@ import edu.njupt.sw.model.Message;
 import edu.njupt.sw.model.User;
 import edu.njupt.sw.service.MessageService;
 import edu.njupt.sw.service.UserService;
-import edu.njupt.sw.util.WendaUtil;
+import edu.njupt.sw.util.CampusZhiHuUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,18 +16,21 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-@Component
+/**
+ * 关注事件
+ */
+@Component  //实例化
 public class FollowHandler implements EventHandler {
-    @Autowired
+    @Autowired  //自动装配
     MessageService messageService;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Override
+    @Override   //自动装配
     public void doHandle(EventModel model) {
         Message message = new Message();
-        message.setFromId(WendaUtil.SYSTEM_USERID);
+        message.setFromId(CampusZhiHuUtil.SYSTEM_USERID);
         message.setToId(model.getEntityOwnerId());
         message.setCreatedDate(new Date());
         User user = userService.getUser(model.getActorId());
@@ -43,7 +46,7 @@ public class FollowHandler implements EventHandler {
         messageService.addMessage(message);
     }
 
-    @Override
+    @Override   //自动装配
     public List<EventType> getSupportEventTypes() {
         return Arrays.asList(EventType.FOLLOW);
     }

@@ -20,23 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Controller
+@Controller //入口
 public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @Autowired
+    @Autowired  //自动装配
     QuestionService questionService;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired  //自动装配
     FollowService followService;
 
-    @Autowired
+    @Autowired  //自动装配
     CommentService commentService;
 
-    @Autowired
+    @Autowired  //自动装配
     HostHolder hostHolder;
 
     /**

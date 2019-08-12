@@ -6,7 +6,7 @@ import edu.njupt.sw.model.User;
 import edu.njupt.sw.model.ViewObject;
 import edu.njupt.sw.service.MessageService;
 import edu.njupt.sw.service.UserService;
-import edu.njupt.sw.util.WendaUtil;
+import edu.njupt.sw.util.CampusZhiHuUtil;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,19 +22,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+@Controller //入口
 public class MessageController {
     private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
-    @Autowired
+    @Autowired  //自动装配
     MessageService messageService;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired  //自动装配
     HostHolder hostHolder;
 
+    /**
+     * 获取用户的站内信
+     * 使用mysql的group by语句，注意mysql8.* 的语句兼容问题
+     * 解决办法见项目根目录的常见问题
+     * @param model
+     * @return
+     */
     @RequestMapping(path = {"/msg/list"}, method = {RequestMethod.GET})
     public String getConversationList(Model model) {
         try {
@@ -58,6 +65,12 @@ public class MessageController {
         return "letter";
     }
 
+    /**
+     * 查看站内信的详细信息
+     * @param model
+     * @param conversationId
+     * @return
+     */
     @RequestMapping(path = {"/msg/detail"}, method = {RequestMethod.GET})
     public String getconversationDetail(Model model, @Param("conversationId") String conversationId) {
         try {
@@ -81,18 +94,23 @@ public class MessageController {
         return "letterDetail";
     }
 
-
+    /**
+     * 发送一个站内信
+     * @param toName
+     * @param content
+     * @return
+     */
     @RequestMapping(path = {"/msg/addMessage"}, method = {RequestMethod.POST})
     @ResponseBody
     public String addMessage(@RequestParam("toName") String toName,
                              @RequestParam("content") String content) {
         try {
             if (hostHolder.getUser() == null) {
-                return WendaUtil.getJSONString(999, "未登录");
+                return CampusZhiHuUtil.getJSONString(999, "未登录");
             }
             User user = userService.selectByName(toName);
             if (user == null) {
-                return WendaUtil.getJSONString(1, "用户不存在");
+                return CampusZhiHuUtil.getJSONString(1, "用户不存在");
             }
 
             Message msg = new Message();
@@ -101,14 +119,20 @@ public class MessageController {
             msg.setToId(user.getId());
             msg.setCreatedDate(new Date());
             messageService.addMessage(msg);
-            return WendaUtil.getJSONString(0);
+            return CampusZhiHuUtil.getJSONString(0);
         } catch (Exception e) {
             logger.error("增加站内信失败" + e.getMessage());
-            return WendaUtil.getJSONString(1, "插入站内信失败");
+            return CampusZhiHuUtil.getJSONString(1, "插入站内信失败");
         }
     }
 
-
+    /**
+     * 添加评论
+     * @param fromId
+     * @param toId
+     * @param content
+     * @return
+     */
     @RequestMapping(path = {"/msg/jsonAddMessage"}, method = {RequestMethod.POST})
     @ResponseBody
     public String addMessage(@RequestParam("fromId") int fromId,
@@ -122,10 +146,10 @@ public class MessageController {
             msg.setCreatedDate(new Date());
             //msg.setConversationId(fromId < toId ? String.format("%d_%d", fromId, toId) : String.format("%d_%d", toId, fromId));
             messageService.addMessage(msg);
-            return WendaUtil.getJSONString(msg.getId());
+            return CampusZhiHuUtil.getJSONString(msg.getId());
         } catch (Exception e) {
             logger.error("增加评论失败" + e.getMessage());
-            return WendaUtil.getJSONString(1, "插入评论失败");
+            return CampusZhiHuUtil.getJSONString(1, "插入评论失败");
         }
     }
 }

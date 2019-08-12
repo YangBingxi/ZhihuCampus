@@ -1,5 +1,8 @@
 package edu.njupt.sw.async;
 
+/**
+ * 定义事件类型
+ */
 public enum EventType {
     LIKE(0),
     COMMENT(1),

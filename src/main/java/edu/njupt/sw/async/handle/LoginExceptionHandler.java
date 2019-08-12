@@ -17,9 +17,9 @@ import java.util.Map;
  * Created by nowcoder on 2016/7/30.
  */
 
-@Component
+@Component  //实例化
 public class LoginExceptionHandler implements EventHandler {
-    @Autowired
+    @Autowired   //自动装配
     MailSender mailSender;
 
     @Override

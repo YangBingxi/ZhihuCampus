@@ -1,14 +1,10 @@
 package edu.njupt.sw.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import edu.njupt.sw.service.CampusZhiHuService;
-import edu.njupt.sw.util.WendaUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -20,10 +16,10 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /*关闭该入口*/
-//@Controller
+//@Controller   //入口
 public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
-    @Autowired
+    @Autowired  //自动装配
     CampusZhiHuService campusZhiHuService;
 
     @RequestMapping(path = {"/","/index"},method = {RequestMethod.GET})

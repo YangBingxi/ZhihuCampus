@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
+@Controller //入口
 public class SettingController {
-    @Autowired
+    @Autowired  //自动装配
     CampusZhiHuService toutiaoService;
 
+    /**
+     * 设置界面
+     * 暂时还没有内容
+     * @param httpSession
+     * @return
+     */
     @RequestMapping(path = {"/setting"})
     @ResponseBody
     public String setting(HttpSession httpSession) {

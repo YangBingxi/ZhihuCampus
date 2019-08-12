@@ -3,7 +3,7 @@ package edu.njupt.sw.controller;
 import edu.njupt.sw.async.EventProducer;
 import edu.njupt.sw.model.*;
 import edu.njupt.sw.service.*;
-import edu.njupt.sw.util.WendaUtil;
+import edu.njupt.sw.util.CampusZhiHuUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,29 +16,29 @@ import java.util.Date;
 import java.util.List;
 
 
-@Controller
+@Controller //入口
 public class QuestionController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @Autowired
+    @Autowired  //自动装配
     QuestionService questionService;
 
-    @Autowired
+    @Autowired  //自动装配
     HostHolder hostHolder;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired  //自动装配
     CommentService commentService;
 
-    @Autowired
+    @Autowired  //自动装配
     FollowService followService;
 
-    @Autowired
+    @Autowired  //自动装配
     LikeService likeService;
 
-    @Autowired
+    @Autowired  //自动装配
     EventProducer eventProducer;
 
     /**
@@ -112,18 +112,18 @@ public class QuestionController {
             question.setCreatedDate(new Date());
             question.setTitle(title);
             if (hostHolder.getUser() == null) { //当前用户未登录
-                question.setUserId(WendaUtil.ANONYMOUS_USERID);//以匿名用户的身份发布问题
+                question.setUserId(CampusZhiHuUtil.ANONYMOUS_USERID);//以匿名用户的身份发布问题
                 // return WendaUtil.getJSONString(999);
             } else {
                 question.setUserId(hostHolder.getUser().getId());
             }
             if (questionService.addQuestion(question) > 0) {    //问题添加成功
-                return WendaUtil.getJSONString(0);
+                return CampusZhiHuUtil.getJSONString(0);
             }
         } catch (Exception e) {
             logger.error("增加题目失败" + e.getMessage());
         }
-        return WendaUtil.getJSONString(1, "失败");
+        return CampusZhiHuUtil.getJSONString(1, "失败");
     }
 
 }

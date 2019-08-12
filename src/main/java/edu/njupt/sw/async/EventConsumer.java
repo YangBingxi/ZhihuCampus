@@ -26,7 +26,7 @@ public class EventConsumer implements InitializingBean, ApplicationContextAware 
     private Map<EventType, List<EventHandler>> config = new HashMap<EventType, List<EventHandler>>();
     private ApplicationContext applicationContext;
 
-    @Autowired
+    @Autowired   //自动装配
     JedisAdapter jedisAdapter;
 
     @Override

@@ -20,21 +20,21 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Component
+@Component  //实例化
 public class FeedHandler implements EventHandler {
-    @Autowired
+    @Autowired  //自动装配
     FollowService followService;
 
-    @Autowired
+    @Autowired  //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired  //自动装配
     FeedService feedService;
 
-    @Autowired
+    @Autowired  //自动装配
     JedisAdapter jedisAdapter;
 
-    @Autowired
+    @Autowired  //自动装配
     QuestionService questionService;
 
 
@@ -62,7 +62,7 @@ public class FeedHandler implements EventHandler {
         return null;
     }
 
-    @Override
+    @Override   //自动装配
     public void doHandle(EventModel model) {
         // 为了测试，把model的userId随机一下
         Random r = new Random();
@@ -92,7 +92,7 @@ public class FeedHandler implements EventHandler {
         }
     }
 
-    @Override
+    @Override   //自动装配
     public List<EventType> getSupportEventTypes() {
         return Arrays.asList(new EventType[]{EventType.COMMENT, EventType.FOLLOW});
     }

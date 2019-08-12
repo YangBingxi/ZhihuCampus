@@ -22,22 +22,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Controller
+@Controller //入口
 public class FeedController {
     private static final Logger logger = LoggerFactory.getLogger(FeedController.class);
 
-    @Autowired
+    @Autowired  //自动装配
     FeedService feedService;
 
-    @Autowired
+    @Autowired  //自动装配
     FollowService followService;
 
-    @Autowired
+    @Autowired  //自动装配
     HostHolder hostHolder;
 
-    @Autowired
+    @Autowired  //自动装配
     JedisAdapter jedisAdapter;
 
+    /**
+     *推模式流
+     * @param model
+     * @return
+     */
     @RequestMapping(path = {"/pushfeeds"}, method = {RequestMethod.GET, RequestMethod.POST})
     private String getPushFeeds(Model model) {
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
@@ -53,6 +58,11 @@ public class FeedController {
         return "feeds";
     }
 
+    /**
+     * 拉模式流
+     * @param model
+     * @return
+     */
     @RequestMapping(path = {"/pullfeeds"}, method = {RequestMethod.GET, RequestMethod.POST})
     private String getPullFeeds(Model model) {
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;

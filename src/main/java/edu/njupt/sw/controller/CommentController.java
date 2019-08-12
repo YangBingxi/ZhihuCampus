@@ -7,7 +7,7 @@ import edu.njupt.sw.service.CommentService;
 import edu.njupt.sw.service.QuestionService;
 import edu.njupt.sw.service.SensitiveService;
 import edu.njupt.sw.service.UserService;
-import edu.njupt.sw.util.WendaUtil;
+import edu.njupt.sw.util.CampusZhiHuUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +19,31 @@ import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
 
-@Controller
+@Controller //入口
 public class CommentController {
     private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
-    @Autowired
+    @Autowired   //自动装配
     HostHolder hostHolder;
 
-    @Autowired
+    @Autowired   //自动装配
     UserService userService;
 
-    @Autowired
+    @Autowired   //自动装配
     CommentService commentService;
 
-    @Autowired
+    @Autowired   //自动装配
     QuestionService questionService;
 
-    @Autowired
+    @Autowired   //自动装配
     SensitiveService sensitiveService;
 
+    /**
+     * 给问题添加评论
+     * @param questionId
+     * @param content
+     * @return
+     */
     @RequestMapping(path = {"/addComment"}, method = {RequestMethod.POST})
     public String addComment(@RequestParam("questionId") int questionId,
                              @RequestParam("content") String content) {
@@ -49,7 +55,7 @@ public class CommentController {
             if (hostHolder.getUser() != null) { //已登录
                 comment.setUserId(hostHolder.getUser().getId());
             } else {    //未登录
-                comment.setUserId(WendaUtil.ANONYMOUS_USERID);
+                comment.setUserId(CampusZhiHuUtil.ANONYMOUS_USERID);
             }
             comment.setContent(content);
             comment.setEntityId(questionId);

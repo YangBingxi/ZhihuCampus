@@ -8,17 +8,18 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
-@Component
+@Component  //实例化
 public class CampusZhiHuWebConfiguration extends WebMvcConfigurerAdapter {
-    @Autowired
-    PassportInterceptor passportInterceptor;
+    @Autowired   //自动装配
+            PassportInterceptor passportInterceptor;
 
-//    @Autowired
-//    LoginRequiredInterceptor loginRequiredInterceptor;
+    @Autowired   //自动装配
+            LoginRequiredInterceptor loginRequredInterceptor;
 
-    @Autowired
-    LoginRequiredInterceptor loginRequredInterceptor;
-
+    /**
+     * 添加拦截器
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) { //注册自己的拦截器
         registry.addInterceptor(passportInterceptor); //添加自己的拦截器，添加到链路上

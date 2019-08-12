@@ -4,7 +4,7 @@ import edu.njupt.sw.dao.LoginTicketDAO;
 import edu.njupt.sw.dao.UserDAO;
 import edu.njupt.sw.model.LoginTicket;
 import edu.njupt.sw.model.User;
-import edu.njupt.sw.util.WendaUtil;
+import edu.njupt.sw.util.CampusZhiHuUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class UserService {
         user.setSalt(UUID.randomUUID().toString().substring(0, 5));
         String head = String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000));
         user.setHeadUrl(head);
-        user.setPassword(WendaUtil.MD5(password + user.getSalt()));
+        user.setPassword(CampusZhiHuUtil.MD5(password + user.getSalt()));
         userDAO.addUser(user);
 
         // 登陆
@@ -91,7 +91,7 @@ public class UserService {
             return map;
         }
 
-        if (!WendaUtil.MD5(password + user.getSalt()).equals(user.getPassword())) {
+        if (!CampusZhiHuUtil.MD5(password + user.getSalt()).equals(user.getPassword())) {
             map.put("msg", "密码不正确");
             return map;
         }

@@ -20,19 +20,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller //入口
 public class LikeController {
     @Autowired  //自动装配
-    LikeService likeService;
+            LikeService likeService;
 
     @Autowired  //自动装配
-    HostHolder hostHolder;
+            HostHolder hostHolder;
 
     @Autowired  //自动装配
-    CommentService commentService;
+            CommentService commentService;
 
     @Autowired  //自动装配
-    EventProducer eventProducer;
+            EventProducer eventProducer;
 
     /**
      * 对评论点赞
+     *
      * @param commentId
      * @return
      */
@@ -56,6 +57,7 @@ public class LikeController {
 
     /**
      * 对评论点踩
+     *
      * @param commentId
      * @return
      */

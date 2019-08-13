@@ -2,8 +2,6 @@ package edu.njupt.sw.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import edu.njupt.sw.controller.CommentController;
-import edu.njupt.sw.model.User;
 import edu.njupt.sw.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +46,7 @@ public class JedisAdapter implements InitializingBean {
         String listName = "list";
         jedis.del(listName);
         for (int i = 0; i < 10; ++i) {
-            jedis.lpush(listName, "a" + String.valueOf(i));
+            jedis.lpush(listName, "a" + i);
         }
         print(4, jedis.lrange(listName, 0, 12));
         print(4, jedis.lrange(listName, 0, 3));
@@ -59,7 +57,7 @@ public class JedisAdapter implements InitializingBean {
         print(9, jedis.lindex(listName, 3));
         print(10, jedis.linsert(listName, BinaryClient.LIST_POSITION.AFTER, "a4", "xx"));
         print(10, jedis.linsert(listName, BinaryClient.LIST_POSITION.BEFORE, "a4", "bb"));
-        print(11, jedis.lrange(listName, 0 ,12));
+        print(11, jedis.lrange(listName, 0, 12));
 
         // hash
         String userKey = "userxx";
@@ -83,7 +81,7 @@ public class JedisAdapter implements InitializingBean {
         String likeKey2 = "commentLike2";
         for (int i = 0; i < 10; ++i) {
             jedis.sadd(likeKey1, String.valueOf(i));
-            jedis.sadd(likeKey2, String.valueOf(i*i));
+            jedis.sadd(likeKey2, String.valueOf(i * i));
         }
         print(20, jedis.smembers(likeKey1));
         print(21, jedis.smembers(likeKey2));
@@ -116,7 +114,7 @@ public class JedisAdapter implements InitializingBean {
         print(36, jedis.zrange(rankKey, 1, 3));
         print(36, jedis.zrevrange(rankKey, 1, 3));
         for (Tuple tuple : jedis.zrangeByScoreWithScores(rankKey, "60", "100")) {
-            print(37, tuple.getElement() + ":" + String.valueOf(tuple.getScore()));
+            print(37, tuple.getElement() + ":" + tuple.getScore());
         }
 
         print(38, jedis.zrank(rankKey, "Ben"));
@@ -135,7 +133,7 @@ public class JedisAdapter implements InitializingBean {
         jedis.zrem(setKey, "b");
         print(43, jedis.zrange(setKey, 0, 10));
         jedis.zremrangeByLex(setKey, "(c", "+");
-        print(44, jedis.zrange(setKey, 0 ,2));
+        print(44, jedis.zrange(setKey, 0, 2));
 
         /*
         JedisPool pool = new JedisPool();

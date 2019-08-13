@@ -16,17 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 
-
 @Component //注解 添加依赖注入
 public class PassportInterceptor implements HandlerInterceptor {
 
-    @Autowired
+    @Autowired  //自动装配
     private LoginTicketDAO loginTicketDAO;
 
-    @Autowired
+    @Autowired  //自动装配
     private UserDAO userDAO;
 
-    @Autowired
+    @Autowired  //自动装配
     private HostHolder hostHolder;
 
     @Override

@@ -1,6 +1,5 @@
 package edu.njupt.sw.async;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import edu.njupt.sw.util.JedisAdapter;
 import edu.njupt.sw.util.RedisKeyUtil;

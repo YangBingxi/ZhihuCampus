@@ -76,7 +76,7 @@ public class SensitiveService implements InitializingBean {
      * 判断是否是一个符号
      */
     private boolean isSymbol(char c) {
-        int ic = (int) c;
+        int ic = c;
         // 0x2E80-0x9FFF 东亚文字范围
         return !CharUtils.isAsciiAlphanumeric(c) && (ic < 0x2E80 || ic > 0x9FFF);
     }

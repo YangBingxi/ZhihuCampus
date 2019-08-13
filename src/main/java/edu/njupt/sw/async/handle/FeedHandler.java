@@ -14,7 +14,6 @@ import edu.njupt.sw.service.QuestionService;
 import edu.njupt.sw.service.UserService;
 import edu.njupt.sw.util.JedisAdapter;
 import edu.njupt.sw.util.RedisKeyUtil;
-import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,23 +22,23 @@ import java.util.*;
 @Component  //实例化
 public class FeedHandler implements EventHandler {
     @Autowired  //自动装配
-    FollowService followService;
+            FollowService followService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired  //自动装配
-    FeedService feedService;
+            FeedService feedService;
 
     @Autowired  //自动装配
-    JedisAdapter jedisAdapter;
+            JedisAdapter jedisAdapter;
 
     @Autowired  //自动装配
-    QuestionService questionService;
+            QuestionService questionService;
 
 
     private String buildFeedData(EventModel model) {
-        Map<String, String> map = new HashMap<String ,String>();
+        Map<String, String> map = new HashMap<String, String>();
         // 触发用户是通用的
         User actor = userService.getUser(model.getActorId());
         if (actor == null) {
@@ -50,7 +49,7 @@ public class FeedHandler implements EventHandler {
         map.put("userName", actor.getName());
 
         if (model.getType() == EventType.COMMENT ||
-                (model.getType() == EventType.FOLLOW  && model.getEntityType() == EntityType.ENTITY_QUESTION)) {
+                (model.getType() == EventType.FOLLOW && model.getEntityType() == EntityType.ENTITY_QUESTION)) {
             Question question = questionService.getById(model.getEntityId());
             if (question == null) {
                 return null;
@@ -66,7 +65,7 @@ public class FeedHandler implements EventHandler {
     public void doHandle(EventModel model) {
         // 为了测试，把model的userId随机一下
         Random r = new Random();
-        model.setActorId(1+r.nextInt(10));
+        model.setActorId(1 + r.nextInt(10));
 
         // 构造一个新鲜事
         Feed feed = new Feed();
@@ -94,6 +93,6 @@ public class FeedHandler implements EventHandler {
 
     @Override   //自动装配
     public List<EventType> getSupportEventTypes() {
-        return Arrays.asList(new EventType[]{EventType.COMMENT, EventType.FOLLOW});
+        return Arrays.asList(EventType.COMMENT, EventType.FOLLOW);
     }
 }

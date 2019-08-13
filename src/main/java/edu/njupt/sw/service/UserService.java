@@ -27,10 +27,10 @@ public class UserService {
     }
 
     /**
-     * @see 注册函数
      * @param username
      * @param password
      * @return
+     * @see 注册函数
      */
     public Map<String, Object> register(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -67,10 +67,10 @@ public class UserService {
     }
 
     /**
-     * @see 登录函数
      * @param username
      * @param password
      * @return
+     * @see 登录函数
      */
     public Map<String, Object> login(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -101,6 +101,11 @@ public class UserService {
         return map;
     }
 
+    /**
+     * 添加token
+     * @param userId
+     * @return
+     */
     private String addLoginTicket(int userId) {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(userId);
@@ -116,17 +121,17 @@ public class UserService {
 
 
     /**
-     * @see 获取用户
      * @param id
      * @return
+     * @see 获取用户
      */
     public User getUser(int id) {
         return userDAO.selectById(id);
     }
 
     /**
-     * @see 登出
      * @param ticket
+     * @see 登出
      */
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);

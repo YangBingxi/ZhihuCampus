@@ -73,6 +73,7 @@ public class LoginController {
     /**
      * 重新登录
      * 用于用户身份不合法时做网页跳转
+     *
      * @param model
      * @param next
      * @return

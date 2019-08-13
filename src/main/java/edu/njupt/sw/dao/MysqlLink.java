@@ -32,6 +32,9 @@ public class MysqlLink {
         password = props.getProperty("password");
     }
 
+    /**
+     * 无参构造函数
+     */
     public MysqlLink() {
 
     }
@@ -59,7 +62,9 @@ public class MysqlLink {
     }
 
     /**
-     * 释放资源的方法
+     * 释放函数
+     * @param stmt
+     * @param conn
      */
     public static void release(Statement stmt, Connection conn) {
         if (stmt != null) {
@@ -80,6 +85,12 @@ public class MysqlLink {
         }
     }
 
+    /**
+     * 释放函数
+     * @param rs
+     * @param stmt
+     * @param conn
+     */
     public static void release(ResultSet rs, Statement stmt, Connection conn) {
         if (rs != null) {
             try {

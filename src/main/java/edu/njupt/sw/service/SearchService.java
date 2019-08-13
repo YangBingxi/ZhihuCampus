@@ -7,7 +7,6 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class SearchService {
     }
 
     public boolean indexQuestion(int qid, String title, String content) throws Exception {
-        SolrInputDocument doc =  new SolrInputDocument();
+        SolrInputDocument doc = new SolrInputDocument();
         doc.setField("id", qid);
         doc.setField(QUESTION_TITLE_FIELD, title);
         doc.setField(QUESTION_CONTENT_FIELD, content);

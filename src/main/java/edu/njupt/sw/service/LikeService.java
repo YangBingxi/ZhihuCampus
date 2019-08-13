@@ -13,6 +13,7 @@ public class LikeService {
 
     /**
      * 返回喜欢的人数
+     *
      * @param entityType
      * @param entityId
      * @return
@@ -24,6 +25,7 @@ public class LikeService {
 
     /**
      * 获取该用户Like的状态
+     *
      * @param userId
      * @param entityType
      * @param entityId
@@ -40,6 +42,7 @@ public class LikeService {
 
     /**
      * Like
+     *
      * @param userId
      * @param entityType
      * @param entityId
@@ -57,6 +60,7 @@ public class LikeService {
 
     /**
      * Dislike
+     *
      * @param userId
      * @param entityType
      * @param entityId

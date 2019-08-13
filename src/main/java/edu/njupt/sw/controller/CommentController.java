@@ -24,22 +24,23 @@ public class CommentController {
     private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
     @Autowired   //自动装配
-    HostHolder hostHolder;
+            HostHolder hostHolder;
 
     @Autowired   //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired   //自动装配
-    CommentService commentService;
+            CommentService commentService;
 
     @Autowired   //自动装配
-    QuestionService questionService;
+            QuestionService questionService;
 
     @Autowired   //自动装配
-    SensitiveService sensitiveService;
+            SensitiveService sensitiveService;
 
     /**
      * 给问题添加评论
+     *
      * @param questionId
      * @param content
      * @return
@@ -71,6 +72,6 @@ public class CommentController {
         } catch (Exception e) {
             logger.error("增加评论失败" + e.getMessage());
         }
-        return "redirect:/question/" + String.valueOf(questionId);
+        return "redirect:/question/" + questionId;
     }
 }

@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller //入口
 public class SearchController {
     private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
     @Autowired  //自动装配
-    SearchService searchService;
+            SearchService searchService;
 
     @Autowired  //自动装配
-    FollowService followService;
+            FollowService followService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired  //自动装配
-    QuestionService questionService;
+            QuestionService questionService;
 
     /**
      * 搜索
+     *
      * @param model
      * @param keyword
      * @param offset

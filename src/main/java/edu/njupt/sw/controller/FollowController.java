@@ -15,30 +15,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller //入口
 public class FollowController {
     @Autowired  //自动装配
-    FollowService followService;
+            FollowService followService;
 
     @Autowired  //自动装配
-    CommentService commentService;
+            CommentService commentService;
 
     @Autowired  //自动装配
-    QuestionService questionService;
+            QuestionService questionService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired  //自动装配
-    HostHolder hostHolder;
+            HostHolder hostHolder;
 
     @Autowired  //自动装配
-    EventProducer eventProducer;
+            EventProducer eventProducer;
 
     /**
      * 关注用户
+     *
      * @param userId
      * @return
      */
@@ -61,6 +65,7 @@ public class FollowController {
 
     /**
      * 取消关注用户
+     *
      * @param userId
      * @return
      */
@@ -83,6 +88,7 @@ public class FollowController {
 
     /**
      * 关注问题
+     *
      * @param questionId
      * @return
      */
@@ -114,6 +120,7 @@ public class FollowController {
 
     /**
      * 取消关注问题
+     *
      * @param questionId
      * @return
      */
@@ -143,6 +150,7 @@ public class FollowController {
 
     /**
      * 查看某个用户的关注列表
+     *
      * @param model
      * @param userId
      * @return
@@ -162,6 +170,7 @@ public class FollowController {
 
     /**
      * 查看某个用户的关注着列表
+     *
      * @param model
      * @param userId
      * @return
@@ -182,6 +191,7 @@ public class FollowController {
 
     /**
      * 获取用户信息
+     *
      * @param localUserId
      * @param userIds
      * @return

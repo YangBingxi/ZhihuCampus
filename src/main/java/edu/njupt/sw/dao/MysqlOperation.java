@@ -2,7 +2,6 @@ package edu.njupt.sw.dao;
 
 
 import edu.njupt.sw.model.Question;
-import org.springframework.stereotype.Controller;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -62,7 +61,14 @@ public class MysqlOperation {
         MysqlLink.release(stmt, conn);
     }
 
-
+    /**
+     * 从数据库中查找前n条问题奥
+     * @param userId
+     * @param offset
+     * @param limit
+     * @return
+     * @throws Exception
+     */
     public List<Question> selectLatestQuestions(int userId, int offset, int limit) throws Exception {
 
 

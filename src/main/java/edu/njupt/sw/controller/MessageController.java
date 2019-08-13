@@ -27,18 +27,19 @@ public class MessageController {
     private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
     @Autowired  //自动装配
-    MessageService messageService;
+            MessageService messageService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired  //自动装配
-    HostHolder hostHolder;
+            HostHolder hostHolder;
 
     /**
      * 获取用户的站内信
      * 使用mysql的group by语句，注意mysql8.* 的语句兼容问题
      * 解决办法见项目根目录的常见问题
+     *
      * @param model
      * @return
      */
@@ -67,6 +68,7 @@ public class MessageController {
 
     /**
      * 查看站内信的详细信息
+     *
      * @param model
      * @param conversationId
      * @return
@@ -96,6 +98,7 @@ public class MessageController {
 
     /**
      * 发送一个站内信
+     *
      * @param toName
      * @param content
      * @return
@@ -128,6 +131,7 @@ public class MessageController {
 
     /**
      * 添加评论
+     *
      * @param fromId
      * @param toId
      * @param content

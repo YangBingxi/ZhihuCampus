@@ -13,9 +13,9 @@ public class FeedService {
     FeedDAO feedDAO;
 
 
-
     /**
      * 拉模式
+     *
      * @param maxId
      * @param userIds
      * @param count
@@ -27,6 +27,7 @@ public class FeedService {
 
     /**
      * 添加feed
+     *
      * @param feed
      * @return
      */
@@ -39,6 +40,7 @@ public class FeedService {
 
     /**
      * 推模式
+     *
      * @param id
      * @return
      */

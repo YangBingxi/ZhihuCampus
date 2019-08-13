@@ -1,10 +1,8 @@
 package edu.njupt.sw.model;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
-import java.util.Map;
 
 public class Feed {
     private int id;
@@ -54,6 +52,7 @@ public class Feed {
         this.data = data;
         dataJSON = JSONObject.parseObject(data);
     }
+
     public String get(String key) {
         return dataJSON == null ? null : dataJSON.getString(key);
     }

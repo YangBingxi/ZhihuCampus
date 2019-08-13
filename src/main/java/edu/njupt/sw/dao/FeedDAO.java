@@ -1,7 +1,11 @@
 package edu.njupt.sw.dao;
 
 import edu.njupt.sw.model.Feed;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 @Mapper
@@ -12,6 +16,7 @@ public interface FeedDAO {
 
     /**
      * 加一个feed
+     *
      * @param feed
      * @return
      */
@@ -21,6 +26,7 @@ public interface FeedDAO {
 
     /**
      * 针对用户进行推推荐
+     *
      * @param id
      * @return
      */
@@ -29,6 +35,7 @@ public interface FeedDAO {
 
     /**
      * 针对用户拉推荐
+     *
      * @param maxId
      * @param userIds
      * @param count

@@ -18,6 +18,7 @@ public class CampusZhiHuWebConfiguration extends WebMvcConfigurerAdapter {
 
     /**
      * 添加拦截器
+     *
      * @param registry
      */
     @Override

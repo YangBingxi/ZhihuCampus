@@ -4,7 +4,6 @@ import edu.njupt.sw.async.EventHandler;
 import edu.njupt.sw.async.EventModel;
 import edu.njupt.sw.async.EventType;
 import edu.njupt.sw.util.MailSender;
-import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +19,7 @@ import java.util.Map;
 @Component  //实例化
 public class LoginExceptionHandler implements EventHandler {
     @Autowired   //自动装配
-    MailSender mailSender;
+            MailSender mailSender;
 
     @Override
     public void doHandle(EventModel model) {

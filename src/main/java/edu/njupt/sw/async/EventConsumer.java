@@ -11,14 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
-import sun.java2d.pipe.hw.AccelDeviceEventNotifier;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.BlockingQueue;
 
 @Service
 public class EventConsumer implements InitializingBean, ApplicationContextAware {
@@ -27,7 +24,7 @@ public class EventConsumer implements InitializingBean, ApplicationContextAware 
     private ApplicationContext applicationContext;
 
     @Autowired   //自动装配
-    JedisAdapter jedisAdapter;
+            JedisAdapter jedisAdapter;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -48,7 +45,7 @@ public class EventConsumer implements InitializingBean, ApplicationContextAware 
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true) {
+                while (true) {
                     String key = RedisKeyUtil.getEventQueueKey();
                     List<String> events = jedisAdapter.brpop(0, key);
 

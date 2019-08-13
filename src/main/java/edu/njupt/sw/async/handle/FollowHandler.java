@@ -22,10 +22,10 @@ import java.util.List;
 @Component  //实例化
 public class FollowHandler implements EventHandler {
     @Autowired  //自动装配
-    MessageService messageService;
+            MessageService messageService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Override   //自动装配
     public void doHandle(EventModel model) {

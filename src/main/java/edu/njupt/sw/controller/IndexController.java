@@ -20,13 +20,13 @@ import java.util.*;
 public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     @Autowired  //自动装配
-    CampusZhiHuService campusZhiHuService;
+            CampusZhiHuService campusZhiHuService;
 
-    @RequestMapping(path = {"/","/index"},method = {RequestMethod.GET})
+    @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET})
     @ResponseBody
     public String index(HttpSession httpSession) {
         logger.info("VISIT HOME");
-        return campusZhiHuService.getMessage(2) + "Hello CampusZhiHu" + httpSession.getAttribute("msg");
+        return CampusZhiHuService.getMessage(2) + "Hello CampusZhiHu" + httpSession.getAttribute("msg");
     }
 
 

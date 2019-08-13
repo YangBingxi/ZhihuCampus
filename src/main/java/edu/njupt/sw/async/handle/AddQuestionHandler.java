@@ -16,7 +16,7 @@ import java.util.List;
 public class AddQuestionHandler implements EventHandler {
     private static final Logger logger = LoggerFactory.getLogger(AddQuestionHandler.class);
     @Autowired  //自动装配
-    SearchService searchService;
+            SearchService searchService;
 
     @Override   //自动装配
     public void doHandle(EventModel model) {

@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class CommentService {
-    @Autowired
+    @Autowired  //自动装配
     private CommentDAO commentDAO;
-    @Autowired
+    @Autowired  //自动装配
     SensitiveService sensitiveService;
 
     public List<Comment> getCommentsByEntity(int entityId, int entityType) {

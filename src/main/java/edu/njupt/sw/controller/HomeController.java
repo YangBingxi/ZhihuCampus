@@ -25,19 +25,19 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired  //自动装配
-    QuestionService questionService;
+            QuestionService questionService;
 
     @Autowired  //自动装配
-    UserService userService;
+            UserService userService;
 
     @Autowired  //自动装配
-    FollowService followService;
+            FollowService followService;
 
     @Autowired  //自动装配
-    CommentService commentService;
+            CommentService commentService;
 
     @Autowired  //自动装配
-    HostHolder hostHolder;
+            HostHolder hostHolder;
 
     /**
      * 定义获取OV的函数

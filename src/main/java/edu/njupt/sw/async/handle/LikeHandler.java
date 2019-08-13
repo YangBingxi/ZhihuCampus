@@ -19,10 +19,10 @@ import java.util.List;
 @Component  //实例化
 public class LikeHandler implements EventHandler {
     @Autowired   //自动装配
-    MessageService messageService;
+            MessageService messageService;
 
     @Autowired   //自动装配
-    UserService userService;
+            UserService userService;
 
     @Override
     public void doHandle(EventModel model) {

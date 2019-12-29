@@ -44,4 +44,5 @@ public interface FeedDAO {
     List<Feed> selectUserFeeds(@Param("maxId") int maxId,
                                @Param("userIds") List<Integer> userIds,
                                @Param("count") int count);
-}
+
+            }

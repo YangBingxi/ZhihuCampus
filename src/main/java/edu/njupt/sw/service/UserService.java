@@ -55,11 +55,11 @@ public class UserService {
         user = new User();
         user.setName(username);
         user.setSalt(UUID.randomUUID().toString().substring(0, 5));
-        String head = String.format("http://q4auui9hp.bkt.clouddn.com/headUrl2/HeadImg%dsw.png", new Random().nextInt(1000));
+        String head = String.format(" http://qiniuheadimg.swyoung.top/headUrl2/HeadImg%dsw.png", new Random().nextInt(171));
+
         user.setHeadUrl(head);
         user.setPassword(CampusZhiHuUtil.MD5(password + user.getSalt()));
         userDAO.addUser(user);
-
         // 登陆
         String ticket = addLoginTicket(user.getId());
         map.put("ticket", ticket);

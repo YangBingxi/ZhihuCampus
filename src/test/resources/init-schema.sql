@@ -1,3 +1,4 @@
+USE wenda;
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question`
 (
